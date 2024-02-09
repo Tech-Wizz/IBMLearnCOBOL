@@ -145,8 +145,9 @@
            END-READ.
       *
        IS-STATE-VIRGINIA.
-           IF STATE ADD 1 TO VIRGINIA-CLIENTS.
-           END-IF.
+           IF USA-STATE = 'Virginia' THEN
+              ADD 1 TO VIRGINIA-CLIENTS
+           END-IF. 
       *    When the current value of USA-STATE equals 'Virginia'
       *    the conditional data-name STATE is TRUE.
       *
