@@ -1,4 +1,4 @@
-# IBMLearnCOBOL
+# Learning COBOL Programming with VSCode
 IBM Class called Learning COBOL Programming with VSCode
 
 
