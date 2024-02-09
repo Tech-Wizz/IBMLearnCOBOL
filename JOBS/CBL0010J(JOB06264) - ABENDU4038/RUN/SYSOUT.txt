@@ -1,0 +1,6 @@
+ IGZ0201W A file attribute mismatch was detected. File ACCT-REC in program CBL0010 had a record length of 174 and the
+          file specified in the ASSIGN clause had a record length of 170.
+ IGZ0035S There was an unsuccessful OPEN or CLOSE of file ACCTREC in program CBL0010 at relative location X'1A0'.
+          Neither FILE STATUS nor an ERROR declarative were specified. The status code was 39.
+          From compile unit CBL0010 at entry point CBL0010 at compile unit offset +000001A0 at entry offset +000001A0
+          at address 1B0001A0.

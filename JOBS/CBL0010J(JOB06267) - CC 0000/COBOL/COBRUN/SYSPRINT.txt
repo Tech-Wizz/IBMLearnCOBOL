@@ -1,0 +1,360 @@
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130                 Date 02/09/2024  Time 14:54:31   Page     1
+0Options in effect:
+  NOADATA
+    ADV
+    AFP(NOVOLATILE)
+    QUOTE
+    ARCH(10)
+    ARITH(COMPAT)
+  NOAWO
+  NOBLOCK0
+    BUFSIZE(4096)
+  NOCICS
+    CODEPAGE(1140)
+  NOCOMPILE(S)
+    CONDCOMP(NOSKIPSRC)
+  NOCOPYLOC
+  NOCOPYRIGHT
+  NOCURRENCY
+    DATA(31)
+    DBCS
+  NODECK
+  NODEFINE
+  NODIAGTRUNC
+    DISPSIGN(COMPAT)
+  NODLL
+  NODUMP
+  NODYNAM
+  NOEXIT
+  NOEXPORTALL
+  NOFASTSRT
+    FLAG(I,I)
+  NOFLAGSTD
+    HGPR(PRESERVE)
+  NOINITCHECK
+  NOINITIAL
+    INLINE
+    INTDATE(ANSI)
+  NOINVDATA
+  NOJAVAIOP
+    LANGUAGE(EN)
+    LINECOUNT(60)
+  NOLIST
+    LP(32)
+  NOMAP
+    MAXPCF(100000)
+  NOMDECK
+  NONAME
+    NSYMBOL(NATIONAL)
+  NONUMBER
+  NONUMCHECK
+    NUMPROC(NOPFD)
+    OBJECT
+  NOOFFSET
+    OPTIMIZE(0)
+    OUTDD(SYSOUT)
+  NOPARMCHECK
+    PGMNAME(COMPAT)
+    QUALIFY(COMPAT)
+    RENT
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130                 Date 02/09/2024  Time 14:54:31   Page     2
+0   RMODE(AUTO)
+  NORULES
+  NOSERVICE
+    SEQUENCE
+    SMARTBIN
+    SOURCE(DEC)
+    SPACE(1)
+  NOSQL
+    SQLCCSID
+  NOSQLIMS
+  NOSSRANGE
+  NOSTGOPT
+    SUPPRESS
+  NOTERM
+  NOTEST(NODWARF,NOSOURCE,NOSEPARATE)
+  NOTHREAD
+    TRUNC(STD)
+    TUNE(10)
+  NOVBREF
+    VLR(STANDARD)
+    VSAMOPENFS(COMPAT)
+  NOWORD
+    XMLPARSE(XMLSS)
+    XREF(FULL)
+    ZWB
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0010   Date 02/09/2024  Time 14:54:31   Page     3
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+0  000001               *-----------------------
+   000002               * Copyright Contributors to the COBOL Programming Course
+   000003               * SPDX-License-Identifier: CC-BY-4.0
+   000004               *-----------------------
+   000005                IDENTIFICATION DIVISION.
+   000006               *-----------------------
+   000007                PROGRAM-ID.    CBL0010
+   000008                AUTHOR.        Otto B. Computational.
+   000009               *--------------------
+   000010                ENVIRONMENT DIVISION.
+   000011               *--------------------
+   000012                INPUT-OUTPUT SECTION.
+   000013                FILE-CONTROL.
+   000014                    SELECT PRINT-LINE ASSIGN TO PRTLINE.                                  20
+   000015                    SELECT ACCT-REC   ASSIGN TO ACCTREC.                                  31
+   000016               *-------------
+   000017                DATA DIVISION.
+   000018               *-------------
+   000019                FILE SECTION.
+   000020                FD  PRINT-LINE RECORDING MODE F.
+   000021                01  PRINT-REC.
+   000022                    05  ACCT-NO-O      PIC X(8).
+   000023                    05  FILLER         PIC X(02) VALUE SPACES.                            IMP
+   000024                    05  LAST-NAME-O    PIC X(20).
+   000025                    05  FILLER         PIC X(02) VALUE SPACES.                            IMP
+   000026                    05  ACCT-LIMIT-O   PIC $$,$$$,$$9.99.
+   000027                    05  FILLER         PIC X(02) VALUE SPACES.                            IMP
+   000028                    05  ACCT-BALANCE-O PIC $$,$$$,$$9.99.
+   000029                    05  FILLER         PIC X(02) VALUE SPACES.                            IMP
+   000030               *
+   000031                FD  ACCT-REC RECORDING MODE F.
+   000032                01  ACCT-FIELDS.
+   000033                    05  ACCT-NO            PIC X(8).
+   000034                    05  ACCT-LIMIT         PIC S9(7)V99 COMP-3.
+   000035                    05  ACCT-BALANCE       PIC S9(7)V99 COMP-3.
+   000036                    05  LAST-NAME          PIC X(20).
+   000037                    05  FIRST-NAME         PIC X(15).
+   000038                    05  CLIENT-ADDR.
+   000039                        10  STREET-ADDR    PIC X(25).
+   000040                        10  CITY-COUNTY    PIC X(20).
+   000041                        10  USA-STATE      PIC X(15).
+   000042                    05  RESERVED           PIC X(7).
+   000043                    05  COMMENTS           PIC X(50).
+   000044               * The USAGE Clause specifies the storage of a data item,
+   000045               * e.g USAGE IS COMP-3, or just COMP-3.
+   000046               * COMP-3 is the equivalent of packed-decimal, frequently used
+   000047               * rather than COMP-1(floating-point), COMP-2(long floating-point)
+   000048               * COMP-4(binary) and COMP-5(native binary).
+   000049               * When no value for USAGE Clause is specified, Default value is
+   000050               * DISPLAY. To do an arithmetic operation with a DISPLAY number,
+   000051               * the program must first convert the characters to a binary
+   000052               * number, execute the operation and convert it back,
+   000053               * which is less eficient than a computational data type.
+   000054               *
+   000055                WORKING-STORAGE SECTION.
+   000056                01  FLAGS.
+   000057                    05 LASTREC          PIC X VALUE SPACE.                                IMP
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0010   Date 02/09/2024  Time 14:54:31   Page     4
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+0  000058               *
+   000059                01  TLIMIT-TBALANCE.
+   000060                    05 TLIMIT              PIC S9(9)V99 COMP-3 VALUE ZERO.                IMP
+   000061                    05 TBALANCE            PIC S9(9)V99 COMP-3 VALUE ZERO.                IMP
+   000062               *    Hint: to know which character format is being used,
+   000063               *    you can type HEX ON on the command line and compare to
+   000064               *    a ASCII/EBCDIC Table. then HEX OFF to turn hex numbers off
+   000065               *
+   000066                01  HEADER-1.
+   000067                    05  FILLER         PIC X(20) VALUE 'Financial Report for'.
+   000068                    05  FILLER         PIC X(60) VALUE SPACES.                            IMP
+   000069               *
+   000070                01  HEADER-2.
+   000071                    05  FILLER         PIC X(05) VALUE 'Year '.
+   000072                    05  HDR-YR         PIC 9(04).
+   000073                    05  FILLER         PIC X(02) VALUE SPACES.                            IMP
+   000074                    05  FILLER         PIC X(06) VALUE 'Month '.
+   000075                    05  HDR-MO         PIC X(02).
+   000076                    05  FILLER         PIC X(02) VALUE SPACES.                            IMP
+   000077                    05  FILLER         PIC X(04) VALUE 'Day '.
+   000078                    05  HDR-DAY        PIC X(02).
+   000079                    05  FILLER         PIC X(56) VALUE SPACES.                            IMP
+   000080               *
+   000081                01  HEADER-3.
+   000082                    05  FILLER         PIC X(08) VALUE 'Account '.
+   000083                    05  FILLER         PIC X(02) VALUE SPACES.                            IMP
+   000084                    05  FILLER         PIC X(10) VALUE 'Last Name '.
+   000085                    05  FILLER         PIC X(15) VALUE SPACES.                            IMP
+   000086                    05  FILLER         PIC X(06) VALUE 'Limit '.
+   000087                    05  FILLER         PIC X(06) VALUE SPACES.                            IMP
+   000088                    05  FILLER         PIC X(08) VALUE 'Balance '.
+   000089                    05  FILLER         PIC X(40) VALUE SPACES.                            IMP
+   000090               *
+   000091                01  HEADER-4.
+   000092                    05  FILLER         PIC X(08) VALUE '--------'.
+   000093                    05  FILLER         PIC X(02) VALUE SPACES.                            IMP
+   000094                    05  FILLER         PIC X(10) VALUE '----------'.
+   000095                    05  FILLER         PIC X(15) VALUE SPACES.                            IMP
+   000096                    05  FILLER         PIC X(10) VALUE '----------'.
+   000097                    05  FILLER         PIC X(02) VALUE SPACES.                            IMP
+   000098                    05  FILLER         PIC X(13) VALUE '-------------'.
+   000099                    05  FILLER         PIC X(40) VALUE SPACES.                            IMP
+   000100               *
+   000101                01  TRAILER-1.
+   000102                    05  FILLER         PIC X(31) VALUE SPACES.                            IMP
+   000103                    05  FILLER         PIC X(14) VALUE '--------------'.
+   000104                    05  FILLER         PIC X(01) VALUE SPACES.                            IMP
+   000105                    05  FILLER         PIC X(14) VALUE '--------------'.
+   000106                    05  FILLER         PIC X(40) VALUE SPACES.                            IMP
+   000107               *
+   000108                01  TRAILER-2.
+   000109                    05  FILLER         PIC X(22) VALUE SPACES.                            IMP
+   000110                    05  FILLER         PIC X(08) VALUE 'Totals ='.
+   000111                    05  FILLER         PIC X(01) VALUE SPACES.                            IMP
+   000112                    05  TLIMIT-O       PIC $$$,$$$,$$9.99.
+   000113                    05  FILLER         PIC X(01) VALUE SPACES.                            IMP
+   000114                    05  TBALANCE-O     PIC $$$,$$$,$$9.99.
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0010   Date 02/09/2024  Time 14:54:31   Page     5
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+0  000115                    05  FILLER         PIC X(40) VALUE SPACES.                            IMP
+   000116               *
+   000117                01 WS-CURRENT-DATE-DATA.
+   000118                    05  WS-CURRENT-DATE.
+   000119                        10  WS-CURRENT-YEAR         PIC 9(04).
+   000120                        10  WS-CURRENT-MONTH        PIC 9(02).
+   000121                        10  WS-CURRENT-DAY          PIC 9(02).
+   000122                    05  WS-CURRENT-TIME.
+   000123                        10  WS-CURRENT-HOUR         PIC 9(02).
+   000124                        10  WS-CURRENT-MINUTE       PIC 9(02).
+   000125                        10  WS-CURRENT-SECOND       PIC 9(02).
+   000126                        10  WS-CURRENT-CENTISECOND  PIC 9(02).
+   000127               *
+   000128               *------------------
+   000129                PROCEDURE DIVISION.
+   000130               *------------------
+   000131                OPEN-FILES.
+   000132                    OPEN INPUT  ACCT-REC.                                                 31
+   000133                    OPEN OUTPUT PRINT-LINE.                                               20
+   000134               *
+   000135                WRITE-HEADERS.
+   000136                    MOVE FUNCTION CURRENT-DATE TO WS-CURRENT-DATE-DATA.                   IFN 117
+   000137                    MOVE WS-CURRENT-YEAR  TO HDR-YR.                                      119 72
+   000138                    MOVE WS-CURRENT-MONTH TO HDR-MO.                                      120 75
+   000139                    MOVE WS-CURRENT-DAY   TO HDR-DAY.                                     121 78
+   000140                    WRITE PRINT-REC FROM HEADER-1.                                        21 66
+   000141                    WRITE PRINT-REC FROM HEADER-2.                                        21 70
+   000142                    MOVE SPACES TO PRINT-REC.                                             IMP 21
+   000143                    WRITE PRINT-REC AFTER ADVANCING 1 LINES.                              21
+   000144                    WRITE PRINT-REC FROM HEADER-3.                                        21 81
+   000145                    WRITE PRINT-REC FROM HEADER-4.                                        21 91
+   000146                    MOVE SPACES TO PRINT-REC.                                             IMP 21
+   000147               *
+   000148                READ-NEXT-RECORD.
+   000149                    PERFORM READ-RECORD                                                   167
+   000150                    PERFORM UNTIL LASTREC = 'Y'                                           57
+   000151      1                 PERFORM LIMIT-BALANCE-TOTAL                                       172
+   000152      1                 PERFORM WRITE-RECORD                                              177
+   000153      1                 PERFORM READ-RECORD                                               167
+   000154                    END-PERFORM
+   000155                    .
+   000156                WRITE-TLIMIT-TBALANCE.
+   000157                    MOVE TLIMIT   TO TLIMIT-O.                                            60 112
+   000158                    MOVE TBALANCE TO TBALANCE-O.                                          61 114
+   000159                    WRITE PRINT-REC FROM TRAILER-1.                                       21 101
+   000160                    WRITE PRINT-REC FROM TRAILER-2.                                       21 108
+   000161               *
+   000162                CLOSE-STOP.
+   000163                    CLOSE ACCT-REC.                                                       31
+   000164                    CLOSE PRINT-LINE.                                                     20
+   000165                    GOBACK.
+   000166               *
+   000167                READ-RECORD.
+   000168                    READ ACCT-REC                                                         31
+   000169      1                 AT END MOVE 'Y' TO LASTREC                                        57
+   000170                    END-READ.
+   000171               *
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0010   Date 02/09/2024  Time 14:54:31   Page     6
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+0  000172                LIMIT-BALANCE-TOTAL.
+   000173                    COMPUTE TLIMIT   = TLIMIT   + ACCT-LIMIT   END-COMPUTE                60 60 34
+   000174                    COMPUTE TBALANCE = TBALANCE + ACCT-BALANCE END-COMPUTE                61 61 35
+   000175                    .
+   000176               *
+   000177                WRITE-RECORD.
+   000178                    MOVE ACCT-NO      TO  ACCT-NO-O.                                      33 22
+   000179                    MOVE ACCT-LIMIT   TO  ACCT-LIMIT-O.                                   34 26
+   000180                    MOVE ACCT-BALANCE TO  ACCT-BALANCE-O.                                 35 28
+   000181                    MOVE LAST-NAME    TO  LAST-NAME-O.                                    36 24
+   000182                    WRITE PRINT-REC.                                                      21
+   000183               *
+   000184
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0010   Date 02/09/2024  Time 14:54:31   Page     7
+0An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+
+  Defined   Cross-reference of data names   References
+
+       35   ACCT-BALANCE . . . . . . . . .  174 180
+       28   ACCT-BALANCE-O . . . . . . . .  M180
+       32   ACCT-FIELDS
+       34   ACCT-LIMIT . . . . . . . . . .  173 179
+       26   ACCT-LIMIT-O . . . . . . . . .  M179
+       33   ACCT-NO. . . . . . . . . . . .  178
+       22   ACCT-NO-O. . . . . . . . . . .  M178
+       31   ACCT-REC . . . . . . . . . . .  15 132 163 168
+       40   CITY-COUNTY
+       38   CLIENT-ADDR
+       43   COMMENTS
+       37   FIRST-NAME
+       56   FLAGS
+       78   HDR-DAY. . . . . . . . . . . .  M139
+       75   HDR-MO . . . . . . . . . . . .  M138
+       72   HDR-YR . . . . . . . . . . . .  M137
+       66   HEADER-1 . . . . . . . . . . .  140
+       70   HEADER-2 . . . . . . . . . . .  141
+       81   HEADER-3 . . . . . . . . . . .  144
+       91   HEADER-4 . . . . . . . . . . .  145
+       36   LAST-NAME. . . . . . . . . . .  181
+       24   LAST-NAME-O. . . . . . . . . .  M181
+       57   LASTREC. . . . . . . . . . . .  150 M169
+       20   PRINT-LINE . . . . . . . . . .  14 133 164
+       21   PRINT-REC. . . . . . . . . . .  M140 M141 M142 143 M144 M145 M146 M159 M160 182
+       42   RESERVED
+       39   STREET-ADDR
+       61   TBALANCE . . . . . . . . . . .  158 M174 174
+      114   TBALANCE-O . . . . . . . . . .  M158
+       60   TLIMIT . . . . . . . . . . . .  157 M173 173
+      112   TLIMIT-O . . . . . . . . . . .  M157
+       59   TLIMIT-TBALANCE
+      101   TRAILER-1. . . . . . . . . . .  159
+      108   TRAILER-2. . . . . . . . . . .  160
+       41   USA-STATE
+      126   WS-CURRENT-CENTISECOND
+      118   WS-CURRENT-DATE
+      117   WS-CURRENT-DATE-DATA . . . . .  M136
+      121   WS-CURRENT-DAY . . . . . . . .  139
+      123   WS-CURRENT-HOUR
+      124   WS-CURRENT-MINUTE
+      120   WS-CURRENT-MONTH . . . . . . .  138
+      125   WS-CURRENT-SECOND
+      122   WS-CURRENT-TIME
+      119   WS-CURRENT-YEAR. . . . . . . .  137
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0010   Date 02/09/2024  Time 14:54:31   Page     8
+0Context usage is indicated by the letter preceding a procedure-name reference.
+ These letters and their meanings are:
+     A = ALTER (procedure-name)
+     D = GO TO (procedure-name) DEPENDING ON
+     E = End of range of (PERFORM) through (procedure-name)
+     G = GO TO (procedure-name)
+     P = PERFORM (procedure-name)
+     T = (ALTER) TO PROCEED TO (procedure-name)
+     U = USE FOR DEBUGGING (procedure-name)
+
+  Defined   Cross-reference of procedures   References
+
+      162   CLOSE-STOP
+      172   LIMIT-BALANCE-TOTAL. . . . . .  P151
+      131   OPEN-FILES
+      148   READ-NEXT-RECORD
+      167   READ-RECORD. . . . . . . . . .  P149 P153
+      135   WRITE-HEADERS
+      177   WRITE-RECORD . . . . . . . . .  P152
+      156   WRITE-TLIMIT-TBALANCE
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0010   Date 02/09/2024  Time 14:54:31   Page     9
+0 Defined   Cross-reference of programs     References
+
+        7   CBL0010
+-* Statistics for COBOL program CBL0010:
+ *    Source records = 184
+ *    Data Division statements = 43
+ *    Procedure Division statements = 34
+ *    Generated COBOL statements = 0
+ *    Program complexity factor = 35
+0End of compilation 1,  program CBL0010,  no statements flagged.
+0Return code 0
