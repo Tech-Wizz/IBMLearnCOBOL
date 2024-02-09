@@ -31,7 +31,7 @@
        FD  ACCT-REC RECORDING MODE F.
        01  ACCT-FIELDS.
            05  ACCT-NO            PIC X(8).
-           05  ACCT-LIMIT         PIC S9(7)V99.
+           05  ACCT-LIMIT         PIC S9(7)V99 COMP-3.
            05  ACCT-BALANCE       PIC S9(7)V99 COMP-3.
            05  LAST-NAME          PIC X(20).
            05  FIRST-NAME         PIC X(15).
