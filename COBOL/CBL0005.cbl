@@ -15,7 +15,7 @@
            SELECT ACCT-REC   ASSIGN TO ACCTREC.
       *-------------
        DATA DIVISION.
-      *-------------
+      *------------- 
        FILE SECTION.
        FD  PRINT-LINE RECORDING MODE F.
       *FD -- describes the layout of PRINT-LINE file,
@@ -33,12 +33,12 @@
       *    than using a higher PIC Clause length as in CBL0001.cobol,
       *    which makes a good design practice and a legible output
       *
-           05  ACCT-LIMIT-O   PIC ZZ,ZZZ,ZZ9.99.
+           05  ACCT-LIMIT-O   PIC $$,$$$,$$9.99.
       *    PIC ZZ,ZZZ,ZZ9.99 -- allows values of different amounts of
       *    digits do be input, replacing zeros with spaces
       *
            05  FILLER         PIC X(02) VALUE SPACES.
-           05  ACCT-BALANCE-O PIC ZZ,ZZZ,ZZ9.99.
+           05  ACCT-BALANCE-O PIC $$,$$$,$$9.99.
            05  FILLER         PIC X(02) VALUE SPACES.
        FD  ACCT-REC RECORDING MODE F.
        01  ACCT-FIELDS.
