@@ -1,0 +1,71 @@
+        1 //CBL0007J JOB 1,NOTIFY=&SYSUID                                         JOB06254
+          //***************************************************/
+          //* Copyright Contributors to the COBOL Programming Course
+          //* SPDX-License-Identifier: CC-BY-4.0
+          //***************************************************/
+          IEFC653I SUBSTITUTION JCL - 1,NOTIFY=Z98532
+        2 //COBRUN  EXEC IGYWCL
+        3 XXIGYWCL PROC  LNGPRFX='IGY640',LIBPRFX='CEE',SRC=COBOL
+          XX*********************************************************************
+          XX*  IBM Enterprise COBOL for z/OS                                    *
+          XX*               Version 6 Release 4 Modification 0                  *
+          XX*********************************************************************
+        4 XXCOBOL   EXEC PGM=IGYCRCTL,REGION=0M
+        5 XXSTEPLIB  DD  DSNAME=&LNGPRFX..SIGYCOMP,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSNAME=IGY640.SIGYCOMP,DISP=SHR
+        6 XX         DD  DSNAME=&LIBPRFX..SCEERUN,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSNAME=CEE.SCEERUN,DISP=SHR
+        7 XX         DD  DSNAME=&LIBPRFX..SCEERUN2,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSNAME=CEE.SCEERUN2,DISP=SHR
+        8 //COBOL.SYSIN  DD DSN=&SYSUID..CBL(CBL0007),DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=Z98532.CBL(CBL0007),DISP=SHR
+          X/SYSIN    DD  DSNAME=&SYSUID..CBL(&SRC),DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSNAME=Z98532.CBL(COBOL),DISP=SHR
+        9 XXSYSPRINT DD  SYSOUT=*
+       10 XXSYSLIN   DD  DSNAME=&&LOADSET,UNIT=SYSALLDA,
+          XX             DISP=(MOD,PASS),SPACE=(CYL,(1,1)),VOL=(,,,1)
+       11 XXSYSUT1   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       12 XXSYSUT2   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       13 XXSYSUT3   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       14 XXSYSUT4   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       15 XXSYSUT5   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       16 XXSYSUT6   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       17 XXSYSUT7   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       18 XXSYSUT8   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       19 XXSYSUT9   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       20 XXSYSUT10  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       21 XXSYSUT11  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       22 XXSYSUT12  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       23 XXSYSUT13  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       24 XXSYSUT14  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       25 XXSYSUT15  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       26 XXSYSMDECK DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+       27 XXSUCCESS IF RC < 8 THEN
+       28 XXLKED    EXEC PGM=IEWBLINK,REGION=0M
+       29 XXSYSLIB   DD  DSNAME=&LIBPRFX..SCEELKEX,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSNAME=CEE.SCEELKEX,DISP=SHR
+       30 XX         DD  DSNAME=&LIBPRFX..SCEELKED,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSNAME=CEE.SCEELKED,DISP=SHR
+       31 XXSYSPRINT DD  SYSOUT=*
+       32 XXSYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)
+       33 XX         DD  DDNAME=SYSIN
+       34 //LKED.SYSLMOD DD DSN=&SYSUID..LOAD(CBL0007),DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=Z98532.LOAD(CBL0007),DISP=SHR
+          X/SYSLMOD  DD  DSNAME=&SYSUID..LOAD(&SRC),DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSNAME=Z98532.LOAD(COBOL),DISP=SHR
+       35 XX        ENDIF
+          //***************************************************/
+       36 // IF RC = 0 THEN
+          //***************************************************/
+       37 //RUN     EXEC PGM=CBL0007
+       38 //STEPLIB   DD DSN=&SYSUID..LOAD,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=Z98532.LOAD,DISP=SHR
+       39 //ACCTREC   DD DSN=&SYSUID..DATA,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=Z98532.DATA,DISP=SHR
+       40 //PRTLINE   DD SYSOUT=*,OUTLIM=15000
+       41 //SYSOUT    DD SYSOUT=*,OUTLIM=15000
+       42 //CEEDUMP   DD DUMMY
+       43 //SYSUDUMP  DD DUMMY
+          //***************************************************/
+       44 // ELSE
+       45 // ENDIF
