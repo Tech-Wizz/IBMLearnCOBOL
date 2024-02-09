@@ -1,0 +1,21 @@
+1                   J E S 2  J O B  L O G  --  S Y S T E M  S 0 W 1  --  N O D E  S V S C J E S 2
+0
+ 10.00.52 JOB06079 ---- FRIDAY,    09 FEB 2024 ----
+ 10.00.52 JOB06079  IRR010I  USERID Z98532   IS ASSIGNED TO THIS JOB.
+ 10.00.52 JOB06079  IEF677I WARNING MESSAGE(S) FOR JOB HELLOCBL ISSUED
+ 10.00.54 JOB06079  ICH70001I Z98532   LAST ACCESS AT 09:50:45 ON FRIDAY, FEBRUARY 9, 2024
+ 10.00.54 JOB06079  $HASP373 HELLOCBL STARTED - INIT 1    - CLASS A        - SYS S0W1
+ 10.00.57 JOB06079  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+ 10.00.57 JOB06079  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+ 10.00.57 JOB06079  -COBRUN   COBOL       00  16072    212       .00       .00     .0            53  BATCH        0     0     0     0
+ 10.00.57 JOB06079  -COBRUN   LKED        00    268     33       .00       .00     .0            58  BATCH        0     0     0     0
+ 10.00.58 JOB06079  -COBRUN   GO          00     37     12       .00       .00     .0             5  BATCH        0     0     0     0
+ 10.00.58 JOB06079  -HELLOCBL ENDED.  NAME-                     TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+ 10.00.58 JOB06079  $HASP395 HELLOCBL ENDED - RC=0000
+0------ JES2 JOB STATISTICS ------
+-  09 FEB 2024 JOB EXECUTION DATE
+-            6 CARDS READ
+-          466 SYSOUT PRINT RECORDS
+-            0 SYSOUT PUNCH RECORDS
+-           20 SYSOUT SPOOL KBYTES
+-         0.08 MINUTES EXECUTION TIME

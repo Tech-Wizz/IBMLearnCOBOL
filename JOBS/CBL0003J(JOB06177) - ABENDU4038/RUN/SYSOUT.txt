@@ -1,0 +1,4 @@
+ IGZ0035S There was an unsuccessful OPEN or CLOSE of file ACCTREC in program CBL0001 at relative location X'1A0'.
+          Neither FILE STATUS nor an ERROR declarative were specified. The status code was 35.
+          From compile unit CBL0001 at entry point CBL0001 at compile unit offset +000001A0 at entry offset +000001A0
+          at address 1B0001A0.

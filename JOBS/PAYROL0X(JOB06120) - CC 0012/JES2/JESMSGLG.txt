@@ -1,0 +1,21 @@
+1                   J E S 2  J O B  L O G  --  S Y S T E M  S 0 W 1  --  N O D E  S V S C J E S 2
+0
+ 10.56.36 JOB06120 ---- FRIDAY,    09 FEB 2024 ----
+ 10.56.36 JOB06120  IRR010I  USERID Z98532   IS ASSIGNED TO THIS JOB.
+ 10.56.37 JOB06120  IEF677I WARNING MESSAGE(S) FOR JOB PAYROL0X ISSUED
+ 10.56.38 JOB06120  ICH70001I Z98532   LAST ACCESS AT 10:54:05 ON FRIDAY, FEBRUARY 9, 2024
+ 10.56.38 JOB06120  $HASP373 PAYROL0X STARTED - INIT 1    - CLASS A        - SYS S0W1
+ 10.56.41 JOB06120  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+ 10.56.41 JOB06120  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+ 10.56.41 JOB06120  -PAYROLL  COBOL       12   1407     80       .00       .00     .0            42  BATCH        0     0     0     0
+ 10.56.41 JOB06120  -PAYROLL  LKED     FLUSH      0      0       .00       .00     .0                BATCH        0     0     0     0
+ 10.56.41 JOB06120  -PAYROLL  GO       FLUSH      0      0       .00       .00     .0                BATCH        0     0     0     0
+ 10.56.42 JOB06120  -PAYROL0X ENDED.  NAME-                     TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+ 10.56.42 JOB06120  $HASP395 PAYROL0X ENDED - RC=0012
+0------ JES2 JOB STATISTICS ------
+-  09 FEB 2024 JOB EXECUTION DATE
+-            6 CARDS READ
+-          349 SYSOUT PRINT RECORDS
+-            0 SYSOUT PUNCH RECORDS
+-           18 SYSOUT SPOOL KBYTES
+-         0.08 MINUTES EXECUTION TIME

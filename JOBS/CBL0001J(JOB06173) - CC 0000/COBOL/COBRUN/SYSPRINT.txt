@@ -1,0 +1,246 @@
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130                 Date 02/09/2024  Time 11:49:08   Page     1
+0Options in effect:
+  NOADATA
+    ADV
+    AFP(NOVOLATILE)
+    QUOTE
+    ARCH(10)
+    ARITH(COMPAT)
+  NOAWO
+  NOBLOCK0
+    BUFSIZE(4096)
+  NOCICS
+    CODEPAGE(1140)
+  NOCOMPILE(S)
+    CONDCOMP(NOSKIPSRC)
+  NOCOPYLOC
+  NOCOPYRIGHT
+  NOCURRENCY
+    DATA(31)
+    DBCS
+  NODECK
+  NODEFINE
+  NODIAGTRUNC
+    DISPSIGN(COMPAT)
+  NODLL
+  NODUMP
+  NODYNAM
+  NOEXIT
+  NOEXPORTALL
+  NOFASTSRT
+    FLAG(I,I)
+  NOFLAGSTD
+    HGPR(PRESERVE)
+  NOINITCHECK
+  NOINITIAL
+    INLINE
+    INTDATE(ANSI)
+  NOINVDATA
+  NOJAVAIOP
+    LANGUAGE(EN)
+    LINECOUNT(60)
+  NOLIST
+    LP(32)
+  NOMAP
+    MAXPCF(100000)
+  NOMDECK
+  NONAME
+    NSYMBOL(NATIONAL)
+  NONUMBER
+  NONUMCHECK
+    NUMPROC(NOPFD)
+    OBJECT
+  NOOFFSET
+    OPTIMIZE(0)
+    OUTDD(SYSOUT)
+  NOPARMCHECK
+    PGMNAME(COMPAT)
+    QUALIFY(COMPAT)
+    RENT
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130                 Date 02/09/2024  Time 11:49:08   Page     2
+0   RMODE(AUTO)
+  NORULES
+  NOSERVICE
+    SEQUENCE
+    SMARTBIN
+    SOURCE(DEC)
+    SPACE(1)
+  NOSQL
+    SQLCCSID
+  NOSQLIMS
+  NOSSRANGE
+  NOSTGOPT
+    SUPPRESS
+  NOTERM
+  NOTEST(NODWARF,NOSOURCE,NOSEPARATE)
+  NOTHREAD
+    TRUNC(STD)
+    TUNE(10)
+  NOVBREF
+    VLR(STANDARD)
+    VSAMOPENFS(COMPAT)
+  NOWORD
+    XMLPARSE(XMLSS)
+    XREF(FULL)
+    ZWB
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0001   Date 02/09/2024  Time 11:49:08   Page     3
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+0  000001               *-----------------------
+   000002               * Copyright Contributors to the COBOL Programming Course
+   000003               * SPDX-License-Identifier: CC-BY-4.0
+   000004               *-----------------------
+   000005                IDENTIFICATION DIVISION.
+   000006               *-----------------------
+   000007                PROGRAM-ID.    CBL0001
+   000008                AUTHOR.        Otto B. Fun.
+   000009               *--------------------
+   000010                ENVIRONMENT DIVISION.
+   000011               *--------------------
+   000012                INPUT-OUTPUT SECTION.
+   000013                FILE-CONTROL.
+   000014                    SELECT PRINT-LINE ASSIGN TO PRTLINE.                                  27
+   000015                    SELECT ACCT-REC   ASSIGN TO ACCTREC.                                  41
+   000016               *SELECT clause creates an internal file name
+   000017               *ASSIGN clause creates a name for an external data source,
+   000018               *which is associated with the JCL DDNAME used by the z/OS
+   000019               *e.g. ACCTREC is linked in JCL file CBL0001J to &SYSUID..DATA
+   000020               *where &SYSUID. stands for Your z/OS user id
+   000021               *e.g. if Your user id is Z54321,
+   000022               *the data set used for ACCTREC is Z54321.DATA	
+   000023               *-------------
+   000024                DATA DIVISION.
+   000025               *-------------
+   000026                FILE SECTION.
+   000027                FD  PRINT-LINE RECORDING MODE F.
+   000028                01  PRINT-REC.
+   000029                    05  ACCT-NO-O      PIC X(8).
+   000030                    05  ACCT-LIMIT-O   PIC $$,$$$,$$9.99.
+   000031                    05  ACCT-BALANCE-O PIC $$,$$$,$$9.99.
+   000032               * PIC $$,$$$,$$9.99 -- Alternative for PIC on chapter 7.2.3,
+   000033               * using $ to allow values of different amounts of digits
+   000034               * and .99 instead of v99 to allow period display on output
+   000035                    05  LAST-NAME-O    PIC X(20).
+   000036                    05  FIRST-NAME-O   PIC X(15).
+   000037                    05  COMMENTS-O     PIC X(50).
+   000038               * since the level 05 is higher than level 01,
+   000039               * all variables belong to PRINT-REC (see chapter 7.3.3)
+   000040               *
+   000041                FD  ACCT-REC RECORDING MODE F.
+   000042                01  ACCT-FIELDS.
+   000043                    05  ACCT-NO            PIC X(8).
+   000044                    05  ACCT-LIMIT         PIC S9(7)V99 COMP-3.
+   000045                    05  ACCT-BALANCE       PIC S9(7)V99 COMP-3.
+   000046               * PIC S9(7)v99 -- seven-digit plus a sign digit value
+   000047               * COMP-3 -- packed BCD (binary coded decimal) representation
+   000048                    05  LAST-NAME          PIC X(20).
+   000049                    05  FIRST-NAME         PIC X(15).
+   000050                    05  CLIENT-ADDR.
+   000051                        10  STREET-ADDR    PIC X(25).
+   000052                        10  CITY-COUNTY    PIC X(20).
+   000053                        10  USA-STATE      PIC X(15).
+   000054                    05  RESERVED           PIC X(7).
+   000055                    05  COMMENTS           PIC X(50).
+   000056               *
+   000057                WORKING-STORAGE SECTION.
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0001   Date 02/09/2024  Time 11:49:08   Page     4
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+0  000058                01 FLAGS.
+   000059                  05 LASTREC           PIC X VALUE SPACE.                                 IMP
+   000060               *------------------
+   000061                PROCEDURE DIVISION.
+   000062               *------------------
+   000063                OPEN-FILES.
+   000064                    OPEN INPUT  ACCT-REC.                                                 41
+   000065                    OPEN OUTPUT PRINT-LINE.                                               27
+   000066               *
+   000067                READ-NEXT-RECORD.
+   000068                    PERFORM READ-RECORD                                                   85
+   000069               *     The previous statement is needed before entering the loop.
+   000070               *     Both the loop condition LASTREC = 'Y'
+   000071               *     and the call to WRITE-RECORD depend on READ-RECORD having
+   000072               *     been executed before.
+   000073               *     The loop starts at the next line with PERFORM UNTIL
+   000074                    PERFORM UNTIL LASTREC = 'Y'                                           59
+   000075      1                 PERFORM WRITE-RECORD                                              90
+   000076      1                 PERFORM READ-RECORD                                               85
+   000077                    END-PERFORM
+   000078                    .
+   000079               *
+   000080                CLOSE-STOP.
+   000081                    CLOSE ACCT-REC.                                                       41
+   000082                    CLOSE PRINT-LINE.                                                     27
+   000083                    GOBACK.
+   000084               *
+   000085                READ-RECORD.
+   000086                    READ ACCT-REC                                                         41
+   000087      1                 AT END MOVE 'Y' TO LASTREC                                        59
+   000088                    END-READ.
+   000089               *
+   000090                WRITE-RECORD.
+   000091                    MOVE ACCT-NO      TO  ACCT-NO-O.                                      43 29
+   000092                    MOVE ACCT-LIMIT   TO  ACCT-LIMIT-O.                                   44 30
+   000093                    MOVE ACCT-BALANCE TO  ACCT-BALANCE-O.                                 45 31
+   000094                    MOVE LAST-NAME    TO  LAST-NAME-O.                                    48 35
+   000095                    MOVE FIRST-NAME   TO  FIRST-NAME-O.                                   49 36
+   000096                    MOVE COMMENTS     TO  COMMENTS-O.                                     55 37
+   000097                    WRITE PRINT-REC.                                                      28
+   000098               *
+   000099
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0001   Date 02/09/2024  Time 11:49:08   Page     5
+0An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+
+  Defined   Cross-reference of data names   References
+
+       45   ACCT-BALANCE . . . . . . . . .  93
+       31   ACCT-BALANCE-O . . . . . . . .  M93
+       42   ACCT-FIELDS
+       44   ACCT-LIMIT . . . . . . . . . .  92
+       30   ACCT-LIMIT-O . . . . . . . . .  M92
+       43   ACCT-NO. . . . . . . . . . . .  91
+       29   ACCT-NO-O. . . . . . . . . . .  M91
+       41   ACCT-REC . . . . . . . . . . .  15 64 81 86
+       52   CITY-COUNTY
+       50   CLIENT-ADDR
+       55   COMMENTS . . . . . . . . . . .  96
+       37   COMMENTS-O . . . . . . . . . .  M96
+       49   FIRST-NAME . . . . . . . . . .  95
+       36   FIRST-NAME-O . . . . . . . . .  M95
+       58   FLAGS
+       48   LAST-NAME. . . . . . . . . . .  94
+       35   LAST-NAME-O. . . . . . . . . .  M94
+       59   LASTREC. . . . . . . . . . . .  74 M87
+       27   PRINT-LINE . . . . . . . . . .  14 65 82
+       28   PRINT-REC. . . . . . . . . . .  97
+       54   RESERVED
+       51   STREET-ADDR
+       53   USA-STATE
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0001   Date 02/09/2024  Time 11:49:08   Page     6
+0Context usage is indicated by the letter preceding a procedure-name reference.
+ These letters and their meanings are:
+     A = ALTER (procedure-name)
+     D = GO TO (procedure-name) DEPENDING ON
+     E = End of range of (PERFORM) through (procedure-name)
+     G = GO TO (procedure-name)
+     P = PERFORM (procedure-name)
+     T = (ALTER) TO PROCEED TO (procedure-name)
+     U = USE FOR DEBUGGING (procedure-name)
+
+  Defined   Cross-reference of procedures   References
+
+       80   CLOSE-STOP
+       63   OPEN-FILES
+       67   READ-NEXT-RECORD
+       85   READ-RECORD. . . . . . . . . .  P68 P76
+       90   WRITE-RECORD . . . . . . . . .  P75
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       CBL0001   Date 02/09/2024  Time 11:49:08   Page     7
+0 Defined   Cross-reference of programs     References
+
+        7   CBL0001
+-* Statistics for COBOL program CBL0001:
+ *    Source records = 99
+ *    Data Division statements = 21
+ *    Procedure Division statements = 18
+ *    Generated COBOL statements = 0
+ *    Program complexity factor = 18
+0End of compilation 1,  program CBL0001,  no statements flagged.
+0Return code 0

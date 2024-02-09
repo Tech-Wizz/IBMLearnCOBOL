@@ -1,0 +1,173 @@
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130                 Date 02/09/2024  Time 10:54:06   Page     1
+0Options in effect:
+  NOADATA
+    ADV
+    AFP(NOVOLATILE)
+    QUOTE
+    ARCH(10)
+    ARITH(COMPAT)
+  NOAWO
+  NOBLOCK0
+    BUFSIZE(4096)
+  NOCICS
+    CODEPAGE(1140)
+  NOCOMPILE(S)
+    CONDCOMP(NOSKIPSRC)
+  NOCOPYLOC
+  NOCOPYRIGHT
+  NOCURRENCY
+    DATA(31)
+    DBCS
+  NODECK
+  NODEFINE
+  NODIAGTRUNC
+    DISPSIGN(COMPAT)
+  NODLL
+  NODUMP
+  NODYNAM
+  NOEXIT
+  NOEXPORTALL
+  NOFASTSRT
+    FLAG(I,I)
+  NOFLAGSTD
+    HGPR(PRESERVE)
+  NOINITCHECK
+  NOINITIAL
+    INLINE
+    INTDATE(ANSI)
+  NOINVDATA
+  NOJAVAIOP
+    LANGUAGE(EN)
+    LINECOUNT(60)
+  NOLIST
+    LP(32)
+  NOMAP
+    MAXPCF(100000)
+  NOMDECK
+  NONAME
+    NSYMBOL(NATIONAL)
+  NONUMBER
+  NONUMCHECK
+    NUMPROC(NOPFD)
+    OBJECT
+  NOOFFSET
+    OPTIMIZE(0)
+    OUTDD(SYSOUT)
+  NOPARMCHECK
+    PGMNAME(COMPAT)
+    QUALIFY(COMPAT)
+    RENT
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130                 Date 02/09/2024  Time 10:54:06   Page     2
+0   RMODE(AUTO)
+  NORULES
+  NOSERVICE
+    SEQUENCE
+    SMARTBIN
+    SOURCE(DEC)
+    SPACE(1)
+  NOSQL
+    SQLCCSID
+  NOSQLIMS
+  NOSSRANGE
+  NOSTGOPT
+    SUPPRESS
+  NOTERM
+  NOTEST(NODWARF,NOSOURCE,NOSEPARATE)
+  NOTHREAD
+    TRUNC(STD)
+    TUNE(10)
+  NOVBREF
+    VLR(STANDARD)
+    VSAMOPENFS(COMPAT)
+  NOWORD
+    XMLPARSE(XMLSS)
+    XREF(FULL)
+    ZWB
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       PAYROL00  Date 02/09/2024  Time 10:54:06   Page     3
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+0  000001               *-----------------------
+   000002               * Copyright Contributors to the COBOL Programming Course
+   000003               * SPDX-License-Identifier: CC-BY-4.0
+   000004               *-----------------------
+   000005               *         COBOL reference format (Figure 1., page 32)
+   000006               *Columns:
+   000007               *  1         2         3         4         5         6         7
+   000008               *89012345678901234567890123456789012345678901234567890123456789012
+   000009               *<A-><--------------------------B-------------------------------->
+   000010               *Area                          Area
+   000011               *<---Sequence Number Area                 Identification Area---->
+   000012               *-----------------------
+   000013                IDENTIFICATION DIVISION.
+   000014               *-----------------------
+   000015                PROGRAM-ID. PAYROL00.
+   000016               *-------------
+   000017                DATA DIVISION.
+   000018               *-------------
+   000019                WORKING-STORAGE SECTION.
+   000020               ****** Variables for the report
+   000021               * level number
+   000022               * |  variable name
+   000023               * |  |          picture clause
+   000024               * |  |          |
+   000025               * V  V          V
+   000026                77  WHO        PIC X(15).
+   000027                77  WHERE      PIC X(20).
+   000028                77  WHY        PIC X(30).
+   000029                77  RATE       PIC 9(3).
+   000030                77  HOURS      PIC 9(3).
+   000031                77  GROSS-PAY  PIC 9(5).
+   000032
+   000033               * PIC X(15) -- fiftheen alphanumeric characters
+   000034               * PIC 9(3)  -- three-digit value
+   000035               *------------------
+   000036                PROCEDURE DIVISION.
+   000037               *------------------
+   000038               ****** COBOL MOVE statements - Literal Text to Variables
+   000039                    MOVE  "Captain COBOL" TO WHO.                                         26
+   000040                    MOVE "San Jose, California" TO WHERE.                                 27
+   000041                    MOVE "Learn to be a COBOL expert" TO WHY.                             28
+   000042                    MOVE 19 TO HOURS.                                                     30
+   000043                    MOVE 23 TO RATE.                                                      29
+   000044               * The string "Captain COBOL" only contains 13 characters,
+   000045               * the remaining positions of variable WHO are filled with spaces
+   000046               * The value 19 only needs 2 digits,
+   000047               * the leftmost position of variable HOURS is filled with zero
+   000048               ****** Calculation using COMPUTE reserved word verb
+   000049                    COMPUTE GROSS-PAY = HOURS * RATE.                                     31 30 29
+   000050               * The result of the multiplication only needs 3 digits,
+   000051               * the remaining leftmost positions are filled with zeroes
+   000052               ****** DISPLAY statements
+   000053                    DISPLAY "Name: " WHO.                                                 26
+   000054                    DISPLAY "Location: " WHERE                                            27
+   000055                    DISPLAY "Reason: " WHY                                                28
+   000056                    DISPLAY "Hours Worked: " HOURS.                                       30
+   000057                    DISPLAY "Hourly Rate: " RATE.                                         29
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       PAYROL00  Date 02/09/2024  Time 10:54:06   Page     4
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+0  000058                    DISPLAY "Gross Pay: " GROSS-PAY.                                      31
+   000059                    DISPLAY WHY " from " WHO.                                             28 26
+   000060                    GOBACK.
+   000061
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       PAYROL00  Date 02/09/2024  Time 10:54:06   Page     5
+0An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+
+  Defined   Cross-reference of data names   References
+
+       31   GROSS-PAY. . . . . . . . . . .  M49 58
+       30   HOURS. . . . . . . . . . . . .  M42 49 56
+       29   RATE . . . . . . . . . . . . .  M43 49 57
+       27   WHERE. . . . . . . . . . . . .  M40 54
+       26   WHO. . . . . . . . . . . . . .  M39 53 59
+       28   WHY. . . . . . . . . . . . . .  M41 55 59
+1PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P231130       PAYROL00  Date 02/09/2024  Time 10:54:06   Page     6
+0 Defined   Cross-reference of programs     References
+
+       15   PAYROL00
+-* Statistics for COBOL program PAYROL00:
+ *    Source records = 61
+ *    Data Division statements = 6
+ *    Procedure Division statements = 14
+ *    Generated COBOL statements = 0
+ *    Program complexity factor = 14
+0End of compilation 1,  program PAYROL00,  no statements flagged.
+0Return code 0

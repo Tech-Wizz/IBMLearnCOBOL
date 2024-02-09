@@ -1,0 +1,21 @@
+1                   J E S 2  J O B  L O G  --  S Y S T E M  S 0 W 1  --  N O D E  S V S C J E S 2
+0
+ 11.49.05 JOB06173 ---- FRIDAY,    09 FEB 2024 ----
+ 11.49.05 JOB06173  IRR010I  USERID Z98532   IS ASSIGNED TO THIS JOB.
+ 11.49.06 JOB06173  IEF677I WARNING MESSAGE(S) FOR JOB CBL0001J ISSUED
+ 11.49.07 JOB06173  ICH70001I Z98532   LAST ACCESS AT 11:04:27 ON FRIDAY, FEBRUARY 9, 2024
+ 11.49.07 JOB06173  $HASP373 CBL0001J STARTED - INIT 1    - CLASS A        - SYS S0W1
+ 11.49.11 JOB06173  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+ 11.49.11 JOB06173  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+ 11.49.11 JOB06173  -COBRUN   COBOL       00  16216    214       .00       .00     .0            71  BATCH        0     0     0     0
+ 11.49.11 JOB06173  -COBRUN   LKED        00    286     34       .00       .00     .0            71  BATCH        0     0     0     0
+ 11.49.11 JOB06173  -RUN                  00     35     19       .00       .00     .0             3  BATCH        0     0     0     0
+ 11.49.11 JOB06173  -CBL0001J ENDED.  NAME-                     TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+ 11.49.11 JOB06173  $HASP395 CBL0001J ENDED - RC=0000
+0------ JES2 JOB STATISTICS ------
+-  09 FEB 2024 JOB EXECUTION DATE
+-           21 CARDS READ
+-          644 SYSOUT PRINT RECORDS
+-            0 SYSOUT PUNCH RECORDS
+-           33 SYSOUT SPOOL KBYTES
+-         0.09 MINUTES EXECUTION TIME

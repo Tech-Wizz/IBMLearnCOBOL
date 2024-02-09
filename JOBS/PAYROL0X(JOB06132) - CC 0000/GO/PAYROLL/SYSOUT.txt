@@ -1,0 +1,7 @@
+ Name: Captain COBOL
+ Location: San Jose, California
+ Reason: Learn to be a COBOL expert
+ Hours Worked: 019
+ Hourly Rate: 023
+ Gross Pay: 00437
+ Captain COBOL  - San Jose, California-- Learn to be a COBOL expert
